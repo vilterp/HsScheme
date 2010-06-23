@@ -7,6 +7,8 @@ This is a "quick and dirty" interpreter for a Scheme-ish language in Haskell, mo
 3. `$ sudo cabal install` (note: the dependency tree gets pretty big, because of the `view` experimental feature -- see below)
 4. `$ hsscheme` (for REPL) or `$ hsscheme myfile.hscm` (to run file)
 
+Developed on Ubuntu and OS X with GHC 6.12.1.
+
 ## Experimental Feature: View ##
 
 The function `view` visualizes data structures using [Ubigraph](http://ubietylab.net/ubigraph/index.html), via [vacuum-ubigraph](http://hackage.haskell.org/package/vacuum-ubigraph). Usage:
@@ -15,7 +17,7 @@ The function `view` visualizes data structures using [Ubigraph](http://ubietylab
 2. start server: `$ ubigraph_server`
 3. in hsscheme: `>> (view [any value])`
 
-This uses [vacuum](http://hackage.haskell.org/package/vacuum-1.0.0) to display the Haskell data structures (`SchemeObj` in `Language/Scheme/Model.hs`) representing Scheme objects.
+This uses [vacuum](http://hackage.haskell.org/package/vacuum-1.0.0) to display the Haskell data structures (`SchemeObj` in `Language/Scheme/Model.hs`) representing Scheme objects. Try visualizing a non-builtin function (just `(view myfunc)`) -- it'll visualize the data that is the code for that function. Not very useful, but pretty neat.
 
 ## TODO ##
 
