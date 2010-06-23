@@ -2,10 +2,11 @@ This is a "quick and dirty" interpreter for a Scheme-ish language in Haskell, mo
 
 ## Install & Run ##
 
-1. download & unpack source
-2. cd into directory
-3. `$ sudo cabal install` (note: the dependency tree gets pretty big, because of the `view` experimental feature -- see below)
-4. `$ hsscheme` (for REPL) or `$ hsscheme myfile.hscm` (to run file)
+1. install [Parseclone](http://github.com/bonasaurus1/Parseclone)
+2. download & unpack source
+3. cd into directory
+4. `$ sudo cabal install` (note: the dependency tree gets pretty big, because of the `view` experimental feature -- see below)
+5. `$ hsscheme` (for REPL) or `$ hsscheme myfile.hscm` (to run file)
 
 Developed on Ubuntu and OS X with GHC 6.12.1.
 
