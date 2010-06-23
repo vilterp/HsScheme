@@ -1,0 +1,80 @@
+;; IO stuff
+
+(def put (l)
+  (if (nil? l)
+      ()
+      (eval (write-char (car l) stdout)
+            (put (cdr l)))))
+
+(def putln (l)
+  (put l)
+  (write-char '\n' stdout))
+
+(def print (o)
+  (put (show o)))
+
+(def println (o)
+  (eval (print o)
+        (put "\n")))
+
+(def read-file (fp)
+  (set h (open-file fp 'read))
+  (def read-all (h)
+    (if (at-eof? h)
+        ()
+        (cons (read-char h) (read-all h))))
+  (set res (read-all h))
+  (close-file h)
+  res)
+
+(def write-file (fp str)
+  (set h (open-file fp 'write))
+  (def write-all (str h)
+    (if (nil? str)
+        ()
+        (eval (write-char (car str) h)
+              (write-all (cdr str) h))))
+  (write-all str h)
+  (close-file h))
+
+;; list stuff
+
+(def map (f l)
+  (if (nil? l)
+      ()
+      (cons (f (car l)) (map f (cdr l)))))
+
+(def filter (p l)
+  (if (nil? l)
+      ()
+      (if (p (car l))
+        (cons (car l) (filter p (cdr l)))
+        (filter p (cdr l)))))
+
+(def fold (f i l)
+  (if (nil? l)
+    i
+    (fold f (f i (car l)) (cdr l))))
+
+(def foreach (l f)
+  (map f l)
+  ())
+
+(def length (l)
+  (if (nil? l)
+      0
+      (+ 1 (length (cdr l)))))
+
+(def concat (l1 l2)
+  (if (nil? l1)
+      l2
+      (cons (car l1) (concat (cdr l1) l2))))
+
+(def sum (l)
+  (fold + 0 l))
+
+(def range (f t)
+  (if (== f t)
+      (cons f ())
+      (cons f (range (+ f 1) t))))
+

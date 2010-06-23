@@ -1,0 +1,16 @@
+Name: hsscheme
+Version: 0.1
+Description: simple interpreter for a Scheme-ish language
+Author: Pete Vilter
+Build-Type: Simple
+Cabal-Version: >= 1.2
+
+Executable  hsscheme
+  Main-is: Language/Scheme/Main.hs
+  Other-Modules: Language.Scheme.Errors
+                 Language.Scheme.Model
+                 Language.Scheme.Lex
+                 Language.Scheme.Parse
+                 Language.Scheme.Eval
+                 Language.Scheme.Show
+  Build-Depends: base == 4.*, parseclone == 0.1, haskeline == 0.6.*, containers, directory, mtl, hubigraph, vacuum-ubigraph
