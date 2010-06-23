@@ -24,7 +24,7 @@ This uses [vacuum](http://hackage.haskell.org/package/vacuum-1.0.0) to display t
 
 * lambdas (closures)
 * tracebacks
-* a proper import path setup, a la [python](http://docs.python.org/tutorial/modules.html#the-module-search-path)
+* a proper import path setup, a la [python](http://docs.python.org/tutorial/modules.html#the-module-search-path) (currently looks for Prelude in current directory, which makes it fail with `Evaluation Error: file doesn't exist: Prelude.hscm`)
 * source locations for error messages
 * a `catch` form
 * fail gracefully when `ubigraph_server` isn't running and `view` is called
