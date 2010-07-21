@@ -3,9 +3,9 @@ This is a "quick and dirty" interpreter for a Scheme-ish language in Haskell, mo
 ## Install & Run ##
 
 1. install [Parseclone](http://github.com/bonasaurus1/Parseclone)
-2. download & unpack source
-3. cd into directory
-4. `$ sudo cabal install` (note: the dependency tree gets pretty big, because of the `view` experimental feature -- see below)
+2. download hsscheme source, unzip, and cd into extracted directory
+3. `$ sudo cabal install` (note: the dependency tree is pretty big, because of the `view` experimental feature -- see below)
+4. create `/usr/lib/hsscheme/` and move `Prelude.hscm` there
 5. `$ hsscheme` (for REPL) or `$ hsscheme myfile.hscm` (to run file)
 
 Developed on Ubuntu and OS X with GHC 6.12.1.
@@ -24,8 +24,6 @@ This uses [vacuum](http://hackage.haskell.org/package/vacuum-1.0.0) to display t
 
 * lambdas (closures)
 * tracebacks
-* a proper import path setup, a la [python](http://docs.python.org/tutorial/modules.html#the-module-search-path) (currently looks for Prelude in current directory, which makes it fail with `Evaluation Error: file doesn't exist: Prelude.hscm`)
 * source locations for error messages
 * a `catch` form
 * fail gracefully when `ubigraph_server` isn't running and `view` is called
-* error messages with source locations

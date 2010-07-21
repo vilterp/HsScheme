@@ -322,16 +322,29 @@ loadCode :: PrimProc
 loadCode args@(ConsObj p EmptyListObj) e = do
                                    case toHsStr p of
                                      Just path -> do
-                                       exists <- doesFileExist path
-                                       case exists of
-                                         True -> do
-                                           contents <- readFile path
+                                       maybePath <- resolveLoad path
+                                       case maybePath of
+                                         Just fullPath -> do
+                                           contents <- readFile fullPath
                                            case readProgram contents path of
                                              Right sos -> eval (mkCons sos) e
                                              Left e -> return $ Left e
-                                         False -> return $ Left $ EvalError $ "file doesn't exist: " ++ path
+                                         Nothing -> return $ Left $ EvalError $ "file doesn't exist: " ++ path
                                      Nothing -> wrongIcArgs args
 loadCode o _ = wrongIcArgs o
+
+libDir :: FilePath
+libDir = "/usr/lib/hsscheme/"
+
+resolveLoad :: FilePath -> IO (Maybe FilePath)
+resolveLoad path = do
+                     p <- doesFileExist path
+                     if p then return $ Just path
+                       else do
+                         let fullPath = libDir ++ path
+                         l <- doesFileExist fullPath
+                         if l then return $ Just fullPath
+                           else return Nothing
 
 wrongIcArgs o = return $ Left $ wrongArgsError o "(path [...paths])"
 
