@@ -65,6 +65,13 @@
       0
       (+ 1 (length (cdr l)))))
 
+(def drop (n l)
+  (if (== n 0)
+      l
+      (if (nil? l)
+        ()
+        (drop (- n 1) (cdr l)))))
+
 (def concat (l1 l2)
   (if (nil? l1)
       l2
@@ -78,3 +85,46 @@
       (cons f ())
       (cons f (range (+ f 1) t))))
 
+(def repeat (n x)
+  (if (== n 0)
+      ()
+      (cons x (repeat (- n 1) x))))
+
+(def zip-with-index (list)
+  (def zwi (l i)
+    (if (nil? l)
+        ()
+        (cons (cons i (car l)) (zwi (cdr l) (+ i 1)))))
+  (zwi list 0))
+
+(def sort (list)
+  (mergesort list <))
+
+(def mergesort (list fun)
+  (if (nil? list)
+      ()
+      (if (only-one-item? list)
+        list
+        (eval (set s (bisect list))
+              (merge (mergesort (car s) fun) (mergesort (cdr s) fun) fun)))))
+
+(def only-one-item? (list)
+  (== (cdr list) ()))
+
+(def bisect (list)
+  (split-at (/ (length list) 2) list))
+
+(def split-at (n list)
+  (if (== n 0)
+      (cons () list)
+      (eval (set s (split-at (- n 1) (cdr list)))
+            (cons (cons (car list) (car s)) (cdr s)))))
+
+(def merge (l1 l2 fun)
+  (if (nil? l1)
+      l2
+      (if (nil? l2)
+          l1
+          (if (fun (car l1) (car l2))
+              (cons (car l1) (merge (cdr l1) l2 fun))
+              (cons (car l2) (merge l1 (cdr l2) fun))))))
