@@ -2,7 +2,7 @@ This is a "quick and dirty" interpreter for a Scheme-ish language in Haskell, mo
 
 ## Install & Run ##
 
-1. install [Parseclone](http://github.com/bonasaurus1/Parseclone)
+1. install [Parseclone](http://github.com/vilterp/Parseclone)
 2. download hsscheme source, unzip, and cd into extracted directory
 3. `$ sudo cabal install` (note: the dependency tree is pretty big, because of the `view` experimental feature -- see below)
 4. create `/usr/lib/hsscheme/` and move `Prelude.hscm` there
